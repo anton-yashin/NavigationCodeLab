@@ -17,7 +17,7 @@ namespace com.companyname.NavigationCodeLab
     /*
         * An activity demonstrating use of a NavHostFragment with a navigation drawer and bottom.
     */
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Exported = true)]
 
     // Step 11 from the code lab. 
     // It is not possible to add the following line <nav-graph android:value="@navigation/mobile_navigation" /> 
@@ -61,7 +61,7 @@ namespace com.companyname.NavigationCodeLab
 
             // These are the fragments that you don't wont the back button of the toolbar to display on e.g. topLevel
             int[] topLevelDestinationIds = new int[] { Resource.Id.home_dest, Resource.Id.deeplink_dest };
-            appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinationIds).SetDrawerLayout(FindViewById<DrawerLayout>(Resource.Id.drawer_layout)).Build();
+            appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinationIds).SetOpenableLayout(FindViewById<DrawerLayout>(Resource.Id.drawer_layout)).Build();
             // TODO END STEP 9.5
 
             SetupActionBar(navController, appBarConfiguration);

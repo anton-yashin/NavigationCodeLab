@@ -1,12 +1,13 @@
 ﻿using Android.OS;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Core.View;
 using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 
 namespace com.companyname.NavigationCodeLab.Fragments
 {
-    public class HomeFragment : Fragment //, View.IOnClickListener
+    public class HomeFragment : Fragment, IMenuProvider //, View.IOnClickListener
     {
         public HomeFragment() { }
 
@@ -15,14 +16,18 @@ namespace com.companyname.NavigationCodeLab.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             
             HasOptionsMenu = true;
+            RequireActivity().AddMenuProvider(this);
             return inflater.Inflate(Resource.Layout.home_fragment, container, false);
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        public void OnCreateMenu(IMenu menu, MenuInflater inflater)
         {
-            base.OnCreateOptionsMenu(menu, inflater);
+            menu.Clear();
             inflater.Inflate(Resource.Menu.main_menu, menu);
         }
+
+        public bool OnMenuItemSelected(IMenuItem menuItem)
+            => false;
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {

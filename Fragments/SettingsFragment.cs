@@ -1,10 +1,11 @@
 ﻿using Android.OS;
 using Android.Views;
+using AndroidX.Core.View;
 using AndroidX.Fragment.App;
 
 namespace com.companyname.NavigationCodeLab.Fragments
 {
-    public class SettingsFragment : Fragment
+    public class SettingsFragment : Fragment, IMenuProvider
     {
         public SettingsFragment() { }
 
@@ -15,13 +16,14 @@ namespace com.companyname.NavigationCodeLab.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             HasOptionsMenu = true;
+            RequireActivity().AddMenuProvider(this);
             return inflater.Inflate(Resource.Layout.settings_fragment, container, false);
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            base.OnCreateOptionsMenu(menu, inflater);
-            menu.Clear();
-        }
+        public void OnCreateMenu(IMenu menu, MenuInflater inflater)
+            => menu.Clear();
+
+        public bool OnMenuItemSelected(IMenuItem menuItem)
+            => false;
     }
 }
